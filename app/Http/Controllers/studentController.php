@@ -35,9 +35,9 @@ class studentController extends Controller
 
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required',
-            'language' => 'required'
+            'email' => 'required|email|unique:student',
+            'phone' => 'required|digits:10',
+            'language' => 'required|in:English,Spanish,French'
         ]);
 
         if ($validator->fails()) {
