@@ -6,9 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/students', [studentController::class , 'index' ]);
 
-Route::post('/students', function (Request $request) {
-    return 'Creando Estudiantes';
-});
+Route::post('/students', [studentController::class ,'store']);
 
 Route::get('/students/{id}', function (Request $request) {
     return 'Obteniendo un Estudiante';
