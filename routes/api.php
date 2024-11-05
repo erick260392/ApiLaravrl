@@ -8,15 +8,11 @@ Route::get('/students', [studentController::class , 'index' ]);
 
 Route::post('/students', [studentController::class ,'store']);
 
-Route::get('/students/{id}', function (Request $request) {
-    return 'Obteniendo un Estudiante';
-});
+Route::get('/students/{id}', [studentController::class ,'show']);
 
 Route::put('/students/{id}', function (Request $request) {
     return 'Actualizando Estudiantes';
 });
 
 
-Route::delete('/students/{id}', function (Request $request) {
-    return 'Eliminando Estudiantes';
-});
+Route::delete('/students/{id}',[studentController::class , 'destroy']);

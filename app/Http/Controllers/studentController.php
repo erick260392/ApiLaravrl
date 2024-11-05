@@ -62,7 +62,7 @@ class studentController extends Controller
 
         if (!$student) {
 
-            $data =[
+            $data = [
                 'message' => 'Error al crear al estudiante',
                 'status' => 500,
             ];
@@ -76,5 +76,55 @@ class studentController extends Controller
         ];
 
         return response()->json($data, 201);
+    }
+
+    public function show($id)
+    {
+
+        $student = Student::find($id);
+
+        if (!$student) {
+
+            $data = [
+                'message' => 'No se encontro el Usuario',
+                'status' => 404
+            ];
+
+            return response()->json($data, 404);
+        }
+
+
+        $data = [
+            'message' => $student,
+            'status' =>   200
+        ];
+
+        return response()->json($data, 200);
+    }
+
+
+    public function destroy($id)
+    {
+
+        $student = Student::find($id);
+
+        if (!$student) {
+
+            $data = [
+                'message' => 'estudiante no Encontrado',
+                'status' => 404
+            ];
+
+            return response()->json($data, 404);
+        }
+
+        $student->delete();
+
+        $data = [
+            'message' => 'estudiante Eliminado',
+            'status' => 200
+        ];
+
+        return response()->json($data, 200);
     }
 }
